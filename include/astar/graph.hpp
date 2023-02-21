@@ -7,14 +7,16 @@
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/highgui.hpp>
 
+/// @brief Generates graph from image
 class GraphGenerator{
     public:
     GraphGenerator(std::string img_path);
     // ~GraphGenerator();
 
     /**
-     * @brief Decompose loaded img to graph
+     * @brief Decompose image to graph
      * 
+     * @param size size to decompose, 0 to use raw
      */
     void DecomposeImg(uint16_t size);
 
