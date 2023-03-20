@@ -6,6 +6,7 @@
 #include <opencv2/core.hpp>
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/highgui.hpp>
+#include <opencv2/imgproc.hpp>
 
 /// @brief Generates graph from image
 class GraphGenerator{
@@ -21,10 +22,14 @@ class GraphGenerator{
     void DecomposeImg(uint16_t size);
 
     cv::Mat GetGraph();
+    void ShowGraph();
+
+    void DrawPath(std::vector<cv::Point2i> path);
 
     private:
     cv::Mat raw_img_;
     cv::Mat graph_;
+    cv::Mat processed;
 };
 
 #endif /* ASTAR_GRAPH_HPP */
