@@ -31,6 +31,11 @@ void AStarSearch::UpdateSearch(Position start, Position goal) {
  * @return Path 
  */
 Path AStarSearch::FindPath(Position start, Position goal) {
+  
+  if (!(is_passable_(start) && start < grid_size_) || !(is_passable_(goal) && goal < grid_size_)) {
+  
+    throw (-1);
+  }  
   open_list_.push(std::make_pair(0.0,start));
   closed_[start] = Checked(start, 0.0);
 

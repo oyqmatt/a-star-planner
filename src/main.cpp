@@ -36,7 +36,16 @@ int main(int argc, char ** argv){
     std::cout << start << std::endl;
     std::cout << goal << std::endl;
     AStarSearch search(&map, start, goal);
-    std::vector<Position> path = search.FindPath(start,goal);
+    std::vector<Position> path;
+    try {
+        path = search.FindPath(start,goal);
+    }
+    catch (int e) {
+        if (e == -1) {
+            std::cerr << "Start or goal position not passable or within map" << std::endl;
+            return -1;
+        }
+    }
     std::cout << "Path found:\n";
     std::vector<cv::Point2i> cv_path;
     for (Position wp : path) {
