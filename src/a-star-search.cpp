@@ -36,6 +36,7 @@ Path AStarSearch::FindPath(Position start, Position goal) {
 
   while (!open_list_.empty()){
     Position current = open_list_.top().second;
+    open_list_.pop();
     if (current == goal) {
       while (current != start) {
         path_.push_back(current);
@@ -51,10 +52,9 @@ Path AStarSearch::FindPath(Position start, Position goal) {
       if (closed_.find(neighbour) == closed_.end() || g < closed_[neighbour].cost) {
         closed_[neighbour] = Checked(current,g);
         double h = diag_dist_(neighbour,goal);
-        open_list_.push(std::make_pair(g+h, neighbour));
+        open_list_.emplace(std::make_pair(g+h, neighbour));
       }
     }
-    open_list_.pop();
   }
 
   return path_;
